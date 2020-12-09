@@ -22,7 +22,12 @@ import exampleVideoData from '../data/exampleVideoData.js';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    // this.state later
+    // this.state should keep track of all videos in vid list + current vid in player
+    this.state = {
+      videoList: exampleVideoData,
+      currentlyPlayed: exampleVideoData[0] // this works for now?
+    };
+
   }
 
   render() {
@@ -35,10 +40,10 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <VideoPlayer video={exampleVideoData[0]} />
+            <VideoPlayer video={this.state.currentlyPlayed} />
           </div>
           <div className="col-md-5">
-            <VideoList videos={exampleVideoData} />
+            <VideoList videos={this.state.videoList} />
           </div>
         </div>
       </div>
