@@ -25,9 +25,16 @@ class App extends React.Component {
     // this.state should keep track of all videos in vid list + current vid in player
     this.state = {
       videoList: exampleVideoData,
-      currentlyPlayed: exampleVideoData[0] // this works for now?
+      currentlyPlaying: exampleVideoData[0] // this works for now?
     };
+  }
 
+  // create a click handler and pass all the way down to VideoListEntry via props?
+  // takes in a video, sets currentlyPlaying as that video
+  titleClickHandler(video) {
+    this.setState({
+      currentlyPlaying: video
+    });
   }
 
   render() {
@@ -40,10 +47,10 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <VideoPlayer video={this.state.currentlyPlayed} />
+            <VideoPlayer video={this.state.currentlyPlaying} />
           </div>
           <div className="col-md-5">
-            <VideoList videos={this.state.videoList} />
+            <VideoList videos={this.state.videoList} clickHandler={this.titleClickHandler.bind(this)} />
           </div>
         </div>
       </div>

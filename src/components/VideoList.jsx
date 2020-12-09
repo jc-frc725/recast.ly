@@ -5,7 +5,7 @@ var VideoList = (props) => (
   // have a function that iterates thru props.videos for each video data
   <div className="video-list">
     {props.videos.map(videoentry =>
-      <VideoListEntry video={videoentry} />
+      <VideoListEntry video={videoentry} clickHandler={props.clickHandler} />
     )}
   </div>
 );
