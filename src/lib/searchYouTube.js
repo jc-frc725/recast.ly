@@ -10,13 +10,13 @@ var searchYouTube = (options, callback) => {
   // use jQuery to send GET request to Youtube's Search:list endpoint
   // should only GET embeddable videos
   $.get({
-    url:'https://www.googleapis.com/youtube/v3/search',
+    url: 'https://www.googleapis.com/youtube/v3/search',
     data: {
       q: options.query,
       maxResults: options.max,
       key: options.key,
-      part: ['snippet'],
-      videoEmbeddable: ['true'],
+      part: 'snippet',
+      videoEmbeddable: 'true',
       type: 'video'
     },
     success: (data) => {
