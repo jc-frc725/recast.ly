@@ -2,21 +2,27 @@ import exampleVideoData from '../data/exampleVideoData.js';
 var VideoListEntry = (props) => (
   <div className="video-list-entry media">
     <div className="media-left media-middle">
-      {/*img tag, class, src and alt need to be templated?
-        props.videoentry = videoData object
-        .snippet
-        .thumbnails
-        .default
-        .url
-      */}
       <img className="media-object" src={props.video.snippet.thumbnails.default.url} alt="" />
     </div>
     <div className="media-body">
-      <div className="video-list-entry-title">{props.video.snippet.title}</div>
-      <div className="video-list-entry-detail">{props.video.snippet.description}</div>
+      {/* when VideoListEntry title is clicked, that video is displayed in Player
+        event handler
+      */}
+      <div className="video-list-entry-title" onClick={clickHandler}>
+        {props.video.snippet.title}
+      </div>
+      <div className="video-list-entry-detail" >
+        {props.video.snippet.description}
+      </div>
     </div>
   </div>
 );
+
+// declaring event listener outside of component works somehow?
+var clickHandler = (e) => {
+  e.preventDefault();
+  console.log('life is pain :)))))');
+};
 
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated
