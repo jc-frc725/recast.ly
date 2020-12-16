@@ -1,7 +1,8 @@
 import VideoPlayer from './VideoPlayer.js';
 import VideoList from './VideoList.js';
 import exampleVideoData from '../data/exampleVideoData.js';
-//import searchYoutube from '../lib/searchYoutube.js';
+import searchYoutube from '../lib/searchYouTube.js';
+import YOUTUBE_API_KEY from '../config/youtube.js';
 // var App = () => (
 //   <div>
 //     <nav className="navbar">
@@ -28,6 +29,16 @@ class App extends React.Component {
       videoList: exampleVideoData,
       currentlyPlaying: exampleVideoData[0] // this works for now?
     };
+  }
+
+  componentDidMount() {
+    const options = {query: 'python tutorial', max: 5, key: YOUTUBE_API_KEY};
+    searchYoutube(options, (videos) => {
+      this.setState({
+        videoList: videos,
+        currentlyPlaying: videos[0]
+      });
+    });
   }
 
   // create a click handler and pass all the way down to VideoListEntry via props?
